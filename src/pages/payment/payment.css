@@ -1,0 +1,6 @@
+.payment_btn {
+	transition: var(--transition);
+}
+.payment_btn:hover {
+	background: #4b4bdd;
+}

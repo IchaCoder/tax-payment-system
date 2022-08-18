@@ -1,0 +1,19 @@
+.payment_img {
+	background-image: url("/src/assets/cc.jpeg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: bottom;
+	height: 350px;
+}
+
+.tax_grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	margin-inline: auto;
+	justify-items: center;
+	gap: 1rem;
+}
+
+.tax_grid > figure {
+	transition: var(--transition);
+}

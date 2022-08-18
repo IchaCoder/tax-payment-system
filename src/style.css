@@ -1,0 +1,9 @@
+/** @format */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.form-input {
+	@apply placeholder:pl-2 placeholder:text-xxs text-lg border-t-0 border-l-0 border-r-0  border-b-2 border-primary border-solid;
+}
