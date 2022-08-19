@@ -1,16 +1,23 @@
-/** @format */
-
 import React from "react";
 import { IoIosArrowBack } from "react-icons/all";
 import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+	createUserWithEmailAndPassword,
+	getAuth,
+	updateProfile,
+	sendEmailVerification,
+} from "firebase/auth";
 import { app } from "../../firebase";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useGlobalContext } from "../../context";
+import Redirecting from "../../component/auth/Redirecting";
 
 const Signup = () => {
 	const auth = getAuth(app);
 	const navigate = useNavigate();
+	const { setPending } = useGlobalContext();
+	const [isSigningUp, setIsSigningUp] = React.useState(false);
 
 	const formik = useFormik({
 		initialValues: {
@@ -28,28 +35,53 @@ const Signup = () => {
 				.min(6, "Too short")
 				.required("Password is required"),
 		}),
-		onSubmit: ({ email, password }, { resetForm }) => {
+		onSubmit: ({ email, password, name }, { resetForm }) => {
 			// console.log(values);
+			setIsSigningUp(true);
 			createUserWithEmailAndPassword(auth, email, password)
 				.then((userCredential) => {
 					const user = userCredential.user;
-					console.log(user);
-					navigate("/login");
+					updateProfile(auth.currentUser, {
+						displayName: name,
+					})
+						.then(() => {
+							// Profile updated!
+
+							console.log("Name saved");
+						})
+						.catch((error) => {
+							console.log(error);
+							// An error occurred
+						});
+					sendEmailVerification(auth.currentUser).then(() => {
+						// Email verification sent!
+						console.log("Email verification sent");
+					});
 					// Signed in
 					// ...
+					setIsSigningUp(false);
+					navigate("/login");
 				})
 				.catch((error) => {
 					// const errorCode = error.code;
 					const errorMessage = error.message;
+					setIsSigningUp(false);
 					console.log(errorMessage);
 					// ..
 				});
 			resetForm();
 		},
 	});
+	if (isSigningUp) {
+		return (
+			<div style={{ fontSize: "1.5rem", textAlign: "center" }}>
+				Confirmation message has been sent to your email, please confirm....{" "}
+			</div>
+		);
+	}
 
 	return (
-		<div className="max-w-pref m-auto filter rounded-lg md:w-1/2 lg:w-lg mt-10 relative bg-gray-300">
+		<div className="max-w-pref m-auto filter rounded-lg md:w-1/2 lg:w-lg mt-10 relative bg-gray-200">
 			<div className="bg-primary absolute w-full h-3 rounded-lg -z-10 -top-1"></div>
 			<header className="flex md:block gap-4 p-4">
 				<button

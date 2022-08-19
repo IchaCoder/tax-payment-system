@@ -15,7 +15,7 @@ const Landing = () => {
 				</small>
 				<Link
 					to="/login"
-					className="text-white p-2 m-2 mt-8 md:ml-24 rounded-lg grid place-items-center w-40 bg-primary md:text-lg"
+					className="text-white p-2 m-2 mt-8 md:ml-24 rounded-lg grid place-items-center w-40 hover:shadow-2xl hover:opacity-90 bg-primary md:text-lg landing_btn"
 				>
 					Login/Register
 				</Link>
