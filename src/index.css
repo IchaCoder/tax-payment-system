@@ -1,5 +1,5 @@
 :root {
-	--theme-clr-one: #e25333;
+	--theme-clr-one: #2cb1bc;
 	--theme-clr-one-variant: #a7432d;
 	--theme-clr-two: #52278a;
 	--theme-clr-two-variant: #42246a;
@@ -77,7 +77,7 @@ input:focus {
 }
 
 .loader {
-	color: white;
+	color: var(--theme-clr-one);
 	font-size: 90px;
 	text-indent: -9999em;
 	overflow: hidden;

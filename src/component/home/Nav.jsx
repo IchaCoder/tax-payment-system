@@ -1,21 +1,18 @@
-import React, { useEffect, useState, useContext } from "react";
-import Overlay from "../Overlay";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import Login from "../auth/Login";
-import { useGlobalContext } from "../../context";
+import React from "react";
 import logo from "../../assets/logo.svg";
 import Profile from "../Dashboard/Profile";
 
 const Nav = () => {
-	const { currentUser } = useGlobalContext();
+	const userToken = JSON.parse(localStorage.getItem("userInfo"));
 
 	return (
 		<nav className="flex justify-between">
 			<div className="p-2 md:pl-24 grid place-items-center">
 				<img src={logo} alt="taxed logo" className="w-32 md:w-40 " />
 			</div>
-			<h1 className="self-center text-3xl hidden md:block ">Make Payment</h1>
+			{userToken && (
+				<h1 className="self-center text-3xl hidden md:block ">Make Payment</h1>
+			)}
 			<Profile />
 		</nav>
 	);

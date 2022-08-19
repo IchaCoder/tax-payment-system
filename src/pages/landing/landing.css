@@ -3,3 +3,7 @@
 		width: 600px;
 	}
 }
+
+.landing_btn {
+	transition: var(--transition);
+}

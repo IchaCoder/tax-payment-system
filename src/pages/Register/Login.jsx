@@ -1,5 +1,3 @@
-/** @format */
-
 import React from "react";
 import { IoIosArrowBack } from "react-icons/all";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,11 +5,14 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { app } from "../../firebase";
-import { useDispatch } from "react-redux";
+import { useGlobalContext } from "../../context";
+import NotVerified from "../../component/auth/NotVerified";
 
 const Login = () => {
 	const navigate = useNavigate();
 	const auth = getAuth(app);
+	const { setPending, setIsEmailVerified, isEmailVerified } =
+		useGlobalContext();
 
 	const formik = useFormik({
 		initialValues: {
@@ -29,19 +30,37 @@ const Login = () => {
 				.then((userCredential) => {
 					// Signed in
 					const user = userCredential.user;
-					// dispatch(checkUser(user));
-					navigate("/cart");
+					if (!user.emailVerified) {
+						setPending(false);
+						setIsEmailVerified(false);
+						return;
+					}
 
+					localStorage.setItem(
+						"userInfo",
+						JSON.stringify({
+							name: user.displayName,
+							email: user.email,
+							verified: user.emailVerified,
+						})
+					);
+
+					navigate("/");
 					// ...
 				})
 				.catch((error) => {
 					// const errorCode = error.code;
 					const errorMessage = error.message;
+
 					console.log(errorMessage);
 				});
 			resetForm();
 		},
 	});
+
+	if (!isEmailVerified) {
+		return <NotVerified />;
+	}
 
 	return (
 		<div className="max-w-pref bg-gray-200 m-auto relative filter rounded-lg md:w-1/2 lg:w-lg mt-10">
@@ -101,9 +120,9 @@ const Login = () => {
 					Create account
 				</Link>{" "}
 			</h4>
-			<Link to="" className="text-primary grid justify-items-center mt-2">
+			{/* <Link to="" className="text-primary grid justify-items-center mt-2">
 				Forgot Password?
-			</Link>
+			</Link> */}
 			<div className="p-5"></div>
 		</div>
 	);

@@ -1,35 +1,47 @@
-/** @format */
-
 import React, { useState, useEffect, useContext } from "react";
 import { getAuth } from "firebase/auth";
 import { app } from "./firebase";
+import Loading from "./component/Loading";
 
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
 	const [pending, setPending] = useState(false);
-	const [currentUser, setCurrentUser] = useState(true);
+	const [isEmailVerified, setIsEmailVerified] = useState(true);
 	const auth = getAuth(app);
 
 	useEffect(() => {
 		auth.onAuthStateChanged((user) => {
 			if (user) {
-				setCurrentUser(true);
 				console.log("user active");
+
+				localStorage.setItem(
+					"userInfo",
+					JSON.stringify({
+						name: user.displayName,
+						email: user.email,
+						verified: user.emailVerified,
+					})
+				);
+			} else {
+				localStorage.removeItem("userInfo");
 			}
-			console.log(user);
 			console.log("user not active");
-			setPending(false);
 		});
-	}, [currentUser]);
+	}, []);
 
 	if (pending) {
-		return (
-			<div style={{ fontSize: "3rem", textAlign: "center" }}>Please wait </div>
-		);
+		return <Loading />;
 	}
 	return (
-		<AppContext.Provider value={{ currentUser, setCurrentUser }}>
+		<AppContext.Provider
+			value={{
+				auth,
+				setPending,
+				isEmailVerified,
+				setIsEmailVerified,
+			}}
+		>
 			{children}
 		</AppContext.Provider>
 	);
