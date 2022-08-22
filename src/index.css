@@ -67,6 +67,10 @@ input:focus {
 	border-style: solid;
 	border-bottom: none;
 }
+
+.form-input {
+	font-size: 16px;
+}
 @media (min-width: 768px) {
 	.card {
 		transition: all 0.2s linear;

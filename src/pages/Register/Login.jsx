@@ -82,7 +82,7 @@ const Login = () => {
 					type="email"
 					name="email"
 					placeholder="Enter Email"
-					className="form-input w-pref h-8 my-4 mx-auto flex justify-center focus:bg-inputBg"
+					className="form-input w-pref h-8 my-4 mx-auto flex justify-center focus:bg-inputBg text-sm"
 					onChange={formik.handleChange}
 					onBlur={formik.handleBlur}
 					value={formik.values.email}
