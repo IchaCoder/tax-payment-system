@@ -7,7 +7,8 @@ const TaxCard = () => {
 
 	const handleOnclickCard = (id) => {
 		const title = taxes.find((tax) => tax.id == id);
-		console.log(title.title);
+
+		localStorage.setItem("taxInfo", title.title);
 		navigate("/payment/mobilemoney");
 	};
 	return (

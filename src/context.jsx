@@ -8,6 +8,9 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
 	const [pending, setPending] = useState(false);
 	const [isEmailVerified, setIsEmailVerified] = useState(true);
+	const [isPaymentModalOpened, setIsPaymentModalOpened] = useState(true);
+	const [paymentError, setPaymentError] = useState("");
+	const [payableAmount, setPayableAmount] = useState(null);
 	const auth = getAuth(app);
 
 	useEffect(() => {
@@ -40,6 +43,12 @@ const AppProvider = ({ children }) => {
 				setPending,
 				isEmailVerified,
 				setIsEmailVerified,
+				isPaymentModalOpened,
+				setIsPaymentModalOpened,
+				paymentError,
+				setPaymentError,
+				payableAmount,
+				setPayableAmount,
 			}}
 		>
 			{children}
