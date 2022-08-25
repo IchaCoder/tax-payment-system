@@ -8,7 +8,7 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
 	const [pending, setPending] = useState(false);
 	const [isEmailVerified, setIsEmailVerified] = useState(true);
-	const [isPaymentModalOpened, setIsPaymentModalOpened] = useState(true);
+	const [isPaymentModalOpened, setIsPaymentModalOpened] = useState(false);
 	const [paymentError, setPaymentError] = useState("");
 	const [payableAmount, setPayableAmount] = useState(null);
 	const auth = getAuth(app);
