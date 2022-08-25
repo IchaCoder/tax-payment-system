@@ -5,8 +5,8 @@ import { useGlobalContext } from "./context";
 
 const Protectedroute = ({ children }) => {
 	const userToken = JSON.parse(localStorage.getItem("userInfo"));
-	const user = true;
-	if (!user) {
+	// const user = true;
+	if (!userToken) {
 		return <Navigate to="/landing" />;
 	}
 	return children;
