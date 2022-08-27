@@ -11,8 +11,13 @@ import NotVerified from "../../component/auth/NotVerified";
 const Login = () => {
 	const navigate = useNavigate();
 	const auth = getAuth(app);
-	const { setPending, setIsEmailVerified, isEmailVerified } =
-		useGlobalContext();
+	const {
+		setPending,
+		setIsEmailVerified,
+		isEmailVerified,
+		loginError,
+		setLoginError,
+	} = useGlobalContext();
 
 	const formik = useFormik({
 		initialValues: {
@@ -26,6 +31,7 @@ const Login = () => {
 				.required("Password is required"),
 		}),
 		onSubmit: ({ email, password }, { resetForm }) => {
+			setLoginError(false);
 			signInWithEmailAndPassword(auth, email, password)
 				.then((userCredential) => {
 					// Signed in
@@ -51,7 +57,7 @@ const Login = () => {
 				.catch((error) => {
 					// const errorCode = error.code;
 					const errorMessage = error.message;
-
+					setLoginError(true);
 					console.log(errorMessage);
 				});
 			resetForm();
@@ -74,8 +80,14 @@ const Login = () => {
 				</button>
 				<h2 className="font-bold text-2xl text-center">Login</h2>
 			</header>
+			{loginError && (
+				<div className="bg-red-400 w-[75%] mx-auto text-center p-1 mt-4 text-white text-sm tracking-wide">
+					Error, please try again
+				</div>
+			)}
+
 			<form
-				className="p-4 mt-10 max-w-pref m-auto"
+				className="p-4 mt-6 max-w-pref m-auto"
 				onSubmit={formik.handleSubmit}
 			>
 				<input

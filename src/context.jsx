@@ -10,7 +10,9 @@ const AppProvider = ({ children }) => {
 	const [isEmailVerified, setIsEmailVerified] = useState(true);
 	const [isPaymentModalOpened, setIsPaymentModalOpened] = useState(false);
 	const [paymentError, setPaymentError] = useState("");
-	const [payableAmount, setPayableAmount] = useState(null);
+	const [payableAmount, setPayableAmount] = useState(0);
+	const [pathName, setPathName] = useState("");
+	const [loginError, setLoginError] = useState(false);
 	const auth = getAuth(app);
 
 	useEffect(() => {
@@ -49,6 +51,10 @@ const AppProvider = ({ children }) => {
 				setPaymentError,
 				payableAmount,
 				setPayableAmount,
+				pathName,
+				setPathName,
+				loginError,
+				setLoginError,
 			}}
 		>
 			{children}

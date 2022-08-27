@@ -16,7 +16,7 @@ import Redirecting from "../../component/auth/Redirecting";
 const Signup = () => {
 	const auth = getAuth(app);
 	const navigate = useNavigate();
-	const { setPending } = useGlobalContext();
+	const { loginError, setLoginError } = useGlobalContext();
 	const [isSigningUp, setIsSigningUp] = React.useState(false);
 
 	const formik = useFormik({
@@ -36,7 +36,7 @@ const Signup = () => {
 				.required("Password is required"),
 		}),
 		onSubmit: ({ email, password, name }, { resetForm }) => {
-			// console.log(values);
+			setLoginError(false);
 			setIsSigningUp(true);
 			createUserWithEmailAndPassword(auth, email, password)
 				.then((userCredential) => {
@@ -65,6 +65,7 @@ const Signup = () => {
 				.catch((error) => {
 					// const errorCode = error.code;
 					const errorMessage = error.message;
+					setLoginError(true);
 					setIsSigningUp(false);
 					console.log(errorMessage);
 					// ..
@@ -92,8 +93,13 @@ const Signup = () => {
 				</button>
 				<h2 className="font-bold text-2xl text-center">Sign up</h2>
 			</header>
+			{loginError && (
+				<div className="bg-red-400 w-[75%] mx-auto text-center p-1 mt-4 text-white text-sm tracking-wide">
+					Error, please try again
+				</div>
+			)}
 			<form
-				className="p-4 mt-10 max-w-pref m-auto"
+				className="p-4 mt-6 max-w-pref m-auto"
 				onSubmit={formik.handleSubmit}
 			>
 				<input
