@@ -11,7 +11,6 @@ import { app } from "../../firebase";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useGlobalContext } from "../../context";
-import Redirecting from "../../component/auth/Redirecting";
 
 const Signup = () => {
 	const auth = getAuth(app);
