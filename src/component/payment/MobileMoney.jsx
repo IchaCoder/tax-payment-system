@@ -82,6 +82,17 @@ const MobileMoney = () => {
 			<button className="text-white hover:text-black hover:bg-gray-300 p-2 mt-8 rounded-lg grid place-items-center w-full bg-primary md:text-lg payment_btn">
 				Proceed
 			</button>
+			<div className="mt-4">
+				<small>
+					Note:{" "}
+					<img
+						src="https://goldstreetbusiness.com/wp-content/uploads/2020/08/momo.jpg"
+						alt="mtn momo"
+						className="w-12 h-12"
+					/>{" "}
+					MTN MOMO is the only acceptable mobile payment now
+				</small>
+			</div>
 		</form>
 	);
 };

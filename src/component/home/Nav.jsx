@@ -8,7 +8,7 @@ const Nav = () => {
 
 	return (
 		<nav className="flex justify-between">
-			<div className="p-2 md:pl-24 grid place-items-center">
+			<div className="p-5 md:pl-24 grid place-items-center">
 				<Link to="/">
 					<img src={logo} alt="taxed logo" className="w-32 md:w-40 " />
 				</Link>

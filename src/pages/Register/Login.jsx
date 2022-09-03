@@ -69,74 +69,79 @@ const Login = () => {
 	}
 
 	return (
-		<div className="max-w-pref bg-gray-200 m-auto relative filter rounded-lg md:w-1/2 lg:w-lg mt-10">
-			<div className="bg-primary absolute w-full h-3 rounded-lg -z-10 -top-1"></div>
-			<header className="flex md:block gap-4 p-4">
-				<button
-					onClick={() => navigate(-1)}
-					className="rounded-lg md:hidden grid hover:shadow-inner2 transition-all duration-500 w-8 h-8 bg-primary place-items-center"
-				>
-					<IoIosArrowBack className="text-white" />
-				</button>
-				<h2 className="font-bold text-2xl text-center">Login</h2>
-			</header>
-			{loginError && (
-				<div className="bg-red-400 w-[75%] mx-auto text-center p-1 mt-4 text-white text-sm tracking-wide">
-					Error, please try again
-				</div>
-			)}
+		<>
+			<div className="max-w-pref bg-gray-200 m-auto relative filter rounded-lg md:w-1/2 lg:w-lg mt-10">
+				<div className="bg-primary absolute w-full h-3 rounded-lg -z-10 -top-1"></div>
+				<header className="flex md:block gap-4 p-4">
+					<button
+						onClick={() => navigate(-1)}
+						className="rounded-lg md:hidden grid hover:shadow-inner2 transition-all duration-500 w-8 h-8 bg-primary place-items-center"
+					>
+						<IoIosArrowBack className="text-white" />
+					</button>
+					<h2 className="font-bold text-2xl text-center">Login</h2>
+				</header>
+				{loginError && (
+					<div className="bg-red-400 w-[75%] mx-auto text-center p-1 mt-4 text-white text-sm tracking-wide">
+						Error, please try again
+					</div>
+				)}
 
-			<form
-				className="p-4 mt-6 max-w-pref m-auto"
-				onSubmit={formik.handleSubmit}
-			>
-				<input
-					type="email"
-					name="email"
-					placeholder="Enter Email"
-					className="form-input w-pref h-8 my-4 mx-auto flex justify-center focus:bg-inputBg text-sm"
-					onChange={formik.handleChange}
-					onBlur={formik.handleBlur}
-					value={formik.values.email}
-				/>
-				{formik.touched.email && formik.errors.email ? (
-					<div className="text-xxs md:pl-6 text-red-700 pl-4">
-						{formik.errors.email}
-					</div>
-				) : null}
-				<input
-					type="password"
-					name="password"
-					placeholder="Enter Password"
-					className="form-input w-pref flex justify-center h-8 my-4 mx-auto focus:bg-inputBg"
-					onChange={formik.handleChange}
-					onBlur={formik.handleBlur}
-					value={formik.values.password}
-				/>
-				{formik.touched.password && formik.errors.password ? (
-					<div className="text-xxs text-red-700 pl-4 md:pl-6">
-						{formik.errors.password}
-					</div>
-				) : null}
-				<button
-					className={`log p-2 my-10 w-pref flex justify-center gap-3 mx-auto uppercase  rounded-lg bg-primary  text-white hover:shadow-inner2 transition-all duration-500 disabled:cursor-not-allowed disabled:bg-gray-400`}
-					type="submit"
-					// disabled={disabled}
+				<form
+					className="p-4 mt-6 max-w-pref m-auto"
+					onSubmit={formik.handleSubmit}
 				>
-					Log in
-				</button>
-			</form>
-			<h4 className="text-center -mt-6">
-				Don't have an account?{" "}
-				<Link to="/signup" className="text-primary">
-					Create account
-				</Link>{" "}
-			</h4>
-			{/* <Link to="" className="text-primary grid justify-items-center mt-2">
+					<input
+						type="email"
+						name="email"
+						placeholder="Enter Email"
+						className="form-input w-pref h-8 my-4 mx-auto flex justify-center focus:bg-inputBg text-sm"
+						onChange={formik.handleChange}
+						onBlur={formik.handleBlur}
+						value={formik.values.email}
+					/>
+					{formik.touched.email && formik.errors.email ? (
+						<div className="text-xxs md:pl-6 text-red-700 pl-4">
+							{formik.errors.email}
+						</div>
+					) : null}
+					<input
+						type="password"
+						name="password"
+						placeholder="Enter Password"
+						className="form-input w-pref flex justify-center h-8 my-4 mx-auto focus:bg-inputBg"
+						onChange={formik.handleChange}
+						onBlur={formik.handleBlur}
+						value={formik.values.password}
+					/>
+					{formik.touched.password && formik.errors.password ? (
+						<div className="text-xxs text-red-700 pl-4 md:pl-6">
+							{formik.errors.password}
+						</div>
+					) : null}
+					<button
+						className={`log p-2 my-10 w-pref flex justify-center gap-3 mx-auto uppercase  rounded-lg bg-primary  text-white hover:shadow-inner2 transition-all duration-500 disabled:cursor-not-allowed disabled:bg-gray-400`}
+						type="submit"
+						// disabled={disabled}
+					>
+						Log in
+					</button>
+				</form>
+				<h4 className="text-center -mt-6">
+					Don't have an account?{" "}
+					<Link to="/signup" className="text-primary">
+						Create account
+					</Link>{" "}
+				</h4>
+				{/* <Link to="" className="text-primary grid justify-items-center mt-2">
 				Forgot Password?
 			</Link> */}
-			<div className="p-5"></div>
-		</div>
+				<div className="p-5"></div>
+			</div>
+			<div className="absolute bottom-2 left-2 font-semibold">
+				Copyright {new Date().getFullYear()} Taxed Inc
+			</div>
+		</>
 	);
 };
 
