@@ -11,12 +11,13 @@ import { app } from "../../firebase";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useGlobalContext } from "../../context";
+import Redirecting from "../../component/auth/Redirecting";
 
 const Signup = () => {
 	const auth = getAuth(app);
 	const navigate = useNavigate();
-	const { loginError, setLoginError } = useGlobalContext();
-	const [isSigningUp, setIsSigningUp] = React.useState(false);
+	const { loginError, setLoginError, isSigningUp, setIsSigningUp } =
+		useGlobalContext();
 
 	const formik = useFormik({
 		initialValues: {
@@ -58,14 +59,12 @@ const Signup = () => {
 					});
 					// Signed in
 					// ...
-					setIsSigningUp(false);
-					navigate("/login");
+					setIsSigningUp(true);
 				})
 				.catch((error) => {
 					// const errorCode = error.code;
 					const errorMessage = error.message;
 					setLoginError(true);
-					setIsSigningUp(false);
 					console.log(errorMessage);
 					// ..
 				});
@@ -73,11 +72,7 @@ const Signup = () => {
 		},
 	});
 	if (isSigningUp) {
-		return (
-			<div style={{ fontSize: "1.5rem", textAlign: "center" }}>
-				Confirmation message has been sent to your email, please confirm....{" "}
-			</div>
-		);
+		return <Redirecting />;
 	}
 
 	return (

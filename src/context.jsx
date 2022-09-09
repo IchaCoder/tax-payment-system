@@ -13,6 +13,7 @@ const AppProvider = ({ children }) => {
 	const [payableAmount, setPayableAmount] = useState(0);
 	const [pathName, setPathName] = useState("");
 	const [loginError, setLoginError] = useState(false);
+	const [isSigningUp, setIsSigningUp] = useState(false);
 	const auth = getAuth(app);
 
 	useEffect(() => {
@@ -55,6 +56,8 @@ const AppProvider = ({ children }) => {
 				setPathName,
 				loginError,
 				setLoginError,
+				isSigningUp,
+				setIsSigningUp,
 			}}
 		>
 			{children}
