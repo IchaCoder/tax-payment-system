@@ -9,7 +9,7 @@ import Landing from "./pages/landing/Landing";
 import Payment from "./pages/payment/Payment";
 import MobileMoney from "./component/payment/MobileMoney";
 import Card from "./component/payment/Card";
-import Bank from "./component/payment/Bank";
+import PrintPage from "./pages/print/PrintPage";
 
 function App() {
 	return (
@@ -34,8 +34,8 @@ function App() {
 						<Route path="payment" element={<Payment />}>
 							<Route path="mobilemoney" element={<MobileMoney />} />
 							<Route path="card" element={<Card />} />
-							<Route path="bank" element={<Bank />} />
 						</Route>
+						<Route path="print" element={<PrintPage />} />
 					</Routes>
 				</div>
 			</>

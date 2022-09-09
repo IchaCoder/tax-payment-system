@@ -29,16 +29,6 @@ const Payment = () => {
 				>
 					Card
 				</NavLink>
-				<NavLink
-					to="bank"
-					className={({ isActive }) => {
-						return `${
-							isActive ? "border-b-2 border-solid border-primary" : ""
-						} p-4 font-semibold`;
-					}}
-				>
-					Bank
-				</NavLink>
 			</nav>
 			{paymentError && (
 				<div className="bg-red-400 text-center p-1 mt-4">{paymentError}</div>

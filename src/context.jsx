@@ -6,11 +6,14 @@ import Loading from "./component/Loading";
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-	const [pending, setPending] = useState(false);
+	const [pending, setPending] = useState(true);
 	const [isEmailVerified, setIsEmailVerified] = useState(true);
-	const [isPaymentModalOpened, setIsPaymentModalOpened] = useState(true);
+	const [isPaymentModalOpened, setIsPaymentModalOpened] = useState(false);
 	const [paymentError, setPaymentError] = useState("");
-	const [payableAmount, setPayableAmount] = useState(null);
+	const [payableAmount, setPayableAmount] = useState(0);
+	const [pathName, setPathName] = useState("");
+	const [loginError, setLoginError] = useState(false);
+	const [isSigningUp, setIsSigningUp] = useState(false);
 	const auth = getAuth(app);
 
 	useEffect(() => {
@@ -49,6 +52,12 @@ const AppProvider = ({ children }) => {
 				setPaymentError,
 				payableAmount,
 				setPayableAmount,
+				pathName,
+				setPathName,
+				loginError,
+				setLoginError,
+				isSigningUp,
+				setIsSigningUp,
 			}}
 		>
 			{children}

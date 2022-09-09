@@ -21,10 +21,12 @@ const TaxCard = () => {
 						className="w-[300px] cursor-pointer bg-white hover:shadow-2xl"
 						onClick={() => handleOnclickCard(id)}
 					>
-						<img src={src} alt={title} />
-						<figcaption className="text-center font-medium p-8">
-							{title}
-						</figcaption>
+						<div>
+							<img src={src} alt={title} loading="lazy" />
+							<figcaption className="text-center font-medium p-8">
+								{title}
+							</figcaption>
+						</div>
 					</figure>
 				);
 			})}

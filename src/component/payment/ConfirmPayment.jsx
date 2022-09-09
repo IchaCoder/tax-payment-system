@@ -1,15 +1,18 @@
 import React, { useEffect } from "react";
 
 import { AiOutlineClose } from "react-icons/all";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import { useGlobalContext } from "../../context";
 
 const ConfirmPayment = () => {
+	const { pathname } = useLocation();
+	console.log(pathname.split("/")[2]);
 	const {
 		setIsPaymentModalOpened,
 		isPaymentModalOpened,
 		payableAmount,
 		setPayableAmount,
+		setPathName,
 	} = useGlobalContext();
 	const [counter, setCounter] = React.useState(5);
 	const [confirmed, setIsConfirmed] = React.useState(false);
@@ -31,8 +34,8 @@ const ConfirmPayment = () => {
 			clearInterval(intervalId);
 			setIsConfirmed(false);
 			setIsPaymentModalOpened(false);
-			setPayableAmount(null);
-			navigate("/");
+			setPathName(pathname.split("/")[2]);
+			navigate("/print");
 		}
 
 		return () => {
@@ -57,7 +60,7 @@ const ConfirmPayment = () => {
 				>
 					<AiOutlineClose className="text-red-600 transform hover:scale-110 transition duration-200 linear h-6 w-6" />
 				</button>
-				<h3 className="text-center mt-4">
+				<h3 className=" mt-4">
 					Are you sure you want to pay an amount of{" "}
 					<strong>GHS{payableAmount}</strong>
 				</h3>
