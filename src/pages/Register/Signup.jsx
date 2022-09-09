@@ -36,10 +36,10 @@ const Signup = () => {
 		}),
 		onSubmit: ({ email, password, name }, { resetForm }) => {
 			setLoginError(false);
-			setIsSigningUp(true);
 			createUserWithEmailAndPassword(auth, email, password)
 				.then((userCredential) => {
 					const user = userCredential.user;
+					setIsSigningUp(true);
 					updateProfile(auth.currentUser, {
 						displayName: name,
 					})
@@ -159,7 +159,7 @@ const Signup = () => {
 					</Link>{" "}
 				</h4>
 			</div>
-			<div className="absolute bottom-2 left-2 font-semibold">
+			<div className="absolute bottom-2 left-2">
 				Copyright {new Date().getFullYear()} Taxed Inc
 			</div>
 		</>

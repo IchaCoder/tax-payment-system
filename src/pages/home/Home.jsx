@@ -13,7 +13,7 @@ const Home = () => {
 			</div>
 			<TaxCard />
 			<div className="p-6"></div>
-			<div className="absolute bottom-2 left-2 font-semibold">
+			<div className="absolute bottom-2 left-2">
 				Copyright {new Date().getFullYear()} Taxed Inc
 			</div>
 		</section>

@@ -24,7 +24,7 @@ const Landing = () => {
 			<div className="absolute -top-8 right-10 hidden lg:block ">
 				<img src={hero} alt="tax img" className="w-[470px] hero_img" />
 			</div>
-			<div className="fixed bottom-2 left-5 md:left-24 font-semibold">
+			<div className="fixed bottom-2 left-5 md:left-24">
 				Copyright {new Date().getFullYear()} Taxed Inc
 			</div>
 		</section>
