@@ -140,7 +140,6 @@ const Signup = () => {
 				) : null}
 				<button
 					className={`log p-2 my-10 w-pref flex justify-center gap-3 mx-auto uppercase  rounded-lg bg-primary  text-white hover:shadow-inner2 transition-all duration-500 disabled:cursor-not-allowed disabled:bg-gray-400`}
-					// disabled={disabled}
 					type="submit"
 				>
 					Create account
