@@ -31,7 +31,7 @@ const Profile = () => {
 		<>
 			{userToken && (
 				<section
-					className="text-white relative flex bg-primary p-1 xs:p-4 m-4 md:mr-24 text-2xl justify-between mt-8 rounded cursor-pointer hover:shadow-lg h-fit z-20"
+					className="text-white relative flex bg-primary p-1 xs:p-4 m-4 md:mr-24 text-2xl justify-between mt-8 rounded cursor-pointer hover:shadow-lg h-fit z-40"
 					onClick={showLogout}
 				>
 					<BsPersonCircle className="self-center pr-1" />
@@ -42,7 +42,7 @@ const Profile = () => {
 					<div
 						className={`absolute ${
 							isHidden ? "hidden" : "block"
-						} top-12 md:top-16 left-0 bg-cyan-700 hover:bg-cyan-300 hover:text-black p-2 w-full text-center text-lg`}
+						} top-16  left-0 bg-cyan-700 hover:bg-cyan-300 hover:text-black p-2 w-full text-center text-lg`}
 						onClick={handleLogOut}
 					>
 						Logout

@@ -11,7 +11,6 @@ const ConfirmPayment = () => {
 		setIsPaymentModalOpened,
 		isPaymentModalOpened,
 		payableAmount,
-		setPayableAmount,
 		setPathName,
 	} = useGlobalContext();
 	const [counter, setCounter] = React.useState(5);
