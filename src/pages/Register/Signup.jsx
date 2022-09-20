@@ -154,9 +154,6 @@ const Signup = () => {
 					</Link>{" "}
 				</h4>
 			</div>
-			<div className="absolute bottom-2 left-2">
-				Copyright {new Date().getFullYear()} Taxed Inc
-			</div>
 		</>
 	);
 };

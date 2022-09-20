@@ -138,9 +138,6 @@ const Login = () => {
 			</Link> */}
 				<div className="p-5"></div>
 			</div>
-			<div className="absolute bottom-2 left-2">
-				Copyright {new Date().getFullYear()} Taxed Inc
-			</div>
 		</>
 	);
 };
